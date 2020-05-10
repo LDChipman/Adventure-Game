@@ -46,17 +46,7 @@ def delayed_print_words(text):
     sleep(0.5)
     print("")
     return ""
-"""
-def delayed_print_words(text):
 
-    word_list = text.split(" ")
-    for word in word_list:
-        sleep(word_delay)
-        print(word, end="")
-        print(" ", end="")
-    print("")
-    return ""
-"""
 def valid_input(input_text, options=[]):
     while True:
         sleep(word_delay)
