@@ -3,12 +3,11 @@ import random
 
 room_1_right_wall_broken = False
 room_2_right_wall_broken = False
-room_2_left_half_enemy_killed = False
+room_2_left_enemy_killed = False
 npc_house_npc_killed = False
-room_2_right_wall_broken = False
 room_2_right_wall_hp = 3
 player_hp = 5
-room_2_left_half_enemy_hp = 2
+room_2_left_enemy_hp = 2
 boss_hp = 12
 player_dmg = 1
 player_move = ""
@@ -16,6 +15,12 @@ player_reaction_move = ""
 dodged = None
 word_delay = 0.#05
 current_room = None
+
+def save_game():
+
+
+def load_game():
+    
 
 def available_commands():
     global current_room
@@ -216,7 +221,7 @@ def room_1_right():
 def room_2_far_left():
     global current_room
     current_room = room_2_far_left
-    if room_2_left_half_enemy_killed == False:
+    if room_2_left_enemy_killed == False:
         delayed_print_words("room 2 far left description with enemy alive")#"You squeeze your way through the hole you had made in the wall.\n You look around and see a long cavern ahead.\nYou notice there is a ceiling in here a little ways above your head.\nYou see something moving farther along the cavern."
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
@@ -271,7 +276,7 @@ def room_2_left():
     global current_room
     current_room = room_2_left
     delayed_print_words("room 2 left description")
-    if room_2_left_half_enemy_killed == False:
+    if room_2_left_enemy_killed == False:
         first_combat_players_turn()
         delayed_print_words("goes to room 2 left")
         room_2_left()
@@ -303,8 +308,8 @@ def room_2_left():
 def first_combat_players_turn():
     global player_dmg
     global player_hp
-    global room_2_left_half_enemy_hp
-    global room_2_left_half_enemy_killed
+    global room_2_left_enemy_hp
+    global room_2_left_enemy_killed
     global player_move
     global current_room
     current_room = first_combat_players_turn
@@ -312,9 +317,9 @@ def first_combat_players_turn():
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title screen")
         title_screen()
-    elif room_2_left_half_enemy_hp <= 0:
+    elif room_2_left_enemy_hp <= 0:
         delayed_print_words("Describe enemy death, goes to room 2 left with enemy killed")
-        room_2_left_half_enemy_killed = True
+        room_2_left_enemy_killed = True
         room_2_left()
     delayed_print_words("Describe enemy")
     delayed_print_words(f"Reads Player hp:{player_hp}")
@@ -342,7 +347,7 @@ def first_combat_players_turn():
         first_combat_enemies_turn()
     elif "attack" in action:
         delayed_print_words("Deal 1 damage to enemy and it becomes enemies turn with player move set to attack")
-        room_2_left_half_enemy_hp -= player_dmg
+        room_2_left_enemy_hp -= player_dmg
         player_move = "attack"
         first_combat_enemies_turn()
     else:
@@ -351,16 +356,16 @@ def first_combat_players_turn():
 def first_combat_enemies_turn():
 
     global player_hp
-    global room_2_left_half_enemy_hp
-    global room_2_left_half_enemy_killed
+    global room_2_left_enemy_hp
+    global room_2_left_enemy_killed
     global player_move
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
         title_screen()
-    elif room_2_left_half_enemy_hp <= 0:
+    elif room_2_left_enemy_hp <= 0:
         delayed_print_words("Describe enemy death, goes to room 2 left with enemy killed")
-        room_2_left_half_enemy_killed = True
+        room_2_left_enemy_killed = True
         room_2_left()
     if player_move == "attack":
         delayed_print_words("Describe enemy as dazed, goes to first combat players turn with both hp unchanged")
