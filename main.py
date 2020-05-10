@@ -745,7 +745,7 @@ def room_4_boss_room():
         exit_to_title()
 
 def room_4_boss_fight():
-    delayed_print_words("boss description")
+    delayed_print_words("boss fight starting description")
     boss_fight_players_turn_boss_right()
 
 def boss_fight_players_turn_boss_right():
@@ -761,8 +761,8 @@ def boss_fight_players_turn_boss_right():
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
-        title_screen()
-
+        title_screen() 
+    delayed_print_words("boss on right description")
     delayed_print_words(f"Reads Player Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
@@ -805,7 +805,7 @@ def boss_fight_players_turn_boss_left():
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
         title_screen()
-
+    delayed_print_words("boss on left description")
     delayed_print_words(f"Reads Player Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
@@ -951,7 +951,7 @@ def boss_fight_player_reaction_boss_in_air():
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
         title_screen()
-
+    delayed_print_words("boss in air description")
     delayed_print_words(f"Reads Player Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
@@ -998,7 +998,7 @@ def boss_fight_player_reaction_boss_left():
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
         title_screen()
-
+    delayed_print_words("boss on left winding up slam attack description")
     delayed_print_words(f"Reads Player Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
@@ -1039,7 +1039,7 @@ def boss_fight_player_reaction_boss_right():
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
         title_screen()
-
+    delayed_print_words("boss on right winding up slam attack description")
     delayed_print_words(f"Reads Player Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
