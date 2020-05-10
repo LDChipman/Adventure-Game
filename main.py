@@ -447,10 +447,10 @@ def room_2_right():
     global current_room
     current_room = room_2_right
 
-    if room_2_right_wall_hp == 0:
-                room_2_right_wall_broken = True
-                room_2_right()
     if room_2_right_wall_broken == False:
+        if room_2_right_wall_hp == 0:
+            room_2_right_wall_broken = True
+            room_2_right()
         delayed_print_words("room 2 right description with wall unbroken")
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "jump" in action and "left" in action:
