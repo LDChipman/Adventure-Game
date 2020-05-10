@@ -19,9 +19,12 @@ current_room = None
 
 def available_commands():
     global current_room
-
-    if current_room == npc_house:
+    global npc_house_npc_killed
+    if current_room == npc_house and npc_house_npc_killed == False:
         delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Talk\n Exit to Title")
+        current_room()
+    elif current_room == room_3_town:
+        delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Enter House\n Exit to Title")
         current_room()
     else:
         delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Exit to Title")
@@ -197,19 +200,27 @@ def room_1_right():
     if room_1_right_wall_broken == True:
         delayed_print_words("room 1 right description with wall broken")#"You are standing on the right side of a dimly lit cavern."
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
-        if "left" in action:
-            delayed_print_words("goes to room 1 with wall broken")
+        if "left" in action and "jump" in action:
+            delayed_print_words("jumps to room 1")
+            room_1()
+        elif "right" in action and "jump" in action:
+            delayed_print_words("jumps, goes to room 1 right")
+            room_1_right()
+        elif "help" in action:
+            available_commands()
+        elif "left" in action:
+            delayed_print_words("goes to room 1")
             room_1()
         elif "jump" in action:
-            delayed_print_words("Jumps, goes to room 1 right with wall broken")#"You jump up into the air, getting around 5 times your height into the air.\nYou land on the ground right where you were."
+            delayed_print_words("Jumps, goes to room 1 right")#"You jump up into the air, getting around 5 times your height into the air.\nYou land on the ground right where you were."
             room_1_right()
         elif "attack" in action:
-            delayed_print_words("swings nail, goes to room 1 right with wall broken")#"You swing your nail at the wall.\nYou hit the edge of the hole you made but the rest of the wall seems to be sturdy\nWith the wall broken you can probably squeeze through."
+            delayed_print_words("swings nail, goes to room 1 right")#"You swing your nail at the wall.\nYou hit the edge of the hole you made but the rest of the wall seems to be sturdy\nWith the wall broken you can probably squeeze through."
             room_1_right()
         elif "exit" in action:
             exit_to_title()
         else:
-            delayed_print_words("goes to room 2 left with enemy alive")
+            delayed_print_words("goes to room 2 left")
             room_2_left()
             
 def room_2_left():
@@ -217,34 +228,53 @@ def room_2_left():
     current_room = room_2_left
     if room_2_left_half_enemy_killed == False:
         delayed_print_words("Room 2 left description with enemy alive")#"You squeeze your way through the hole you had made in the wall.\n You look around and see a long cavern ahead.\nYou notice there is a ceiling in here a little ways above your head.\nYou see something moving farther along the cavern."
-        action = valid_input("What would you like to do?\nSuggestions:\n Move Right", ["left", "right", "jump", "attack", "exit"])
-        if "right" in action:
-            delayed_print_words("goes to room 2 left half with enemy alive")
+        action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
+        if "left" in action and "jump" in action:
+            delayed_print_words("jumps slightly to the left goes to room 2 left")
+            room_2_left()
+        elif "right" in action and "jump" in action:
+            delayed_print_words("jumps slightly to the right goes to room 2 left")
+            room_2_left()
+        elif "help" in action:
+            available_commands()
+        elif "right" in action:
+            delayed_print_words("goes to room 2 left half")
             room_2_left_half()
         elif "left" in action:
-            delayed_print_words("goes to room 1 right with wall broken")
+            delayed_print_words("goes to room 1 right")
             room_1_right()
         elif "jump" in action:
-            delayed_print_words("jumps, goes to room 2 left with enemy alive")#"You jump up into the air.\nYou hit your head on the ceiling halfway through your jump.\nYou land back where you jumped from."
+            delayed_print_words("jumps, goes to room 2 left")#"You jump up into the air.\nYou hit your head on the ceiling halfway through your jump.\nYou land back where you jumped from."
             room_2_left()
         elif "exit" in action:
             exit_to_title()
         else:
-            delayed_print_words("Swings Nail, goes to room 2 left with enemy alive")#"You swing your nail in the air in front of yourself"
+            delayed_print_words("Swings Nail, goes to room 2 left")#"You swing your nail in the air in front of yourself"
             room_2_left()
     else:
         delayed_print_words("Room 2 left description with enemy killed")#"You squeeze your way through the hole you had made in the wall.\n You look around and see a long cavern ahead.\nYou notice there is a ceiling in here a little ways above your head."
-        action = valid_input("What would you like to do?\nSuggestions:\n Move Right", ["right", "jump", "attack", "exit"])
-        if "right" in action:
+        action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
+        if "left" in action and "jump" in action:
+            delayed_print_words("jumps slightly to the left goes to room 2 left")
+            room_2_left()
+        elif "right" in action and "jump" in action:
+            delayed_print_words("jumps slightly to right goes to room 2 left")
+            room_2_left()
+        elif "help" in action:
+            available_commands()
+        elif "left" in action:
+            delayed_print_words("goes to room 1 right")
+            room_1_right()
+        elif "right" in action:
             delayed_print_words("goes to room 2 left half with enemy killed")
             room_2_left_half()
         elif "jump" in action:
-            delayed_print_words("jumps, goes to room 2 left with enemy killed")#"You jump up into the air.\nYou hit your head on the ceiling halfway through your jump.\nYou land back where you jumped from."
+            delayed_print_words("jumps, goes to room 2 left")#"You jump up into the air.\nYou hit your head on the ceiling halfway through your jump.\nYou land back where you jumped from."
             room_2_left()
         elif "exit" in action:
             exit_to_title()
         else:
-            delayed_print_words("Swings nail, goes to room 2 left with enemy killed")#"You swing your nail in the air in front of yourself"
+            delayed_print_words("Swings nail, goes to room 2 left")#"You swing your nail in the air in front of yourself"
             room_2_left()
     
 def room_2_left_half():
@@ -253,23 +283,31 @@ def room_2_left_half():
     delayed_print_words("room 2 left half description")
     if room_2_left_half_enemy_killed == False:
         first_combat_players_turn()
-        delayed_print_words("goes to room 2 left half with enemy killed")
+        delayed_print_words("goes to room 2 left half")
         room_2_left_half()
     else:
-        action = valid_input("What would you like to do?\nSuggestions:\n Move Right", ["left", "right", "jump", "attack", "exit"])
-        if "left" in action:
-            delayed_print_words("goes to room 2 left with enemy killed")
+        action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
+        if "left" in action and "jump" in action:
+            delayed_print_words("jumps slightly to the left goes to room 2 left half")
+            room_2_left_half()
+        elif "right" in action and "jump" in action:
+            delayed_print_words("jumps slightly to right goes to room 2 left half")
+            room_2_left_half()
+        elif "help" in action:
+            available_commands()
+        elif "left" in action:
+            delayed_print_words("goes to room 2 left")
             room_2_left()
         elif "right" in action:
             delayed_print_words("goes to room 2 right half")
             room_2_right_half()
         elif "jump" in action:
-            delayed_print_words("Jumps, goes to room 2 left half with enemy killed")#"You jump up into the air.\nYou hit your head on the ceiling halfway through your jump.\nYou land back where you jumped from."
+            delayed_print_words("Jumps, goes to room 2 left half")#"You jump up into the air.\nYou hit your head on the ceiling halfway through your jump.\nYou land back where you jumped from."
             room_2_left_half()
         elif "exit" in action:
             exit_to_title()
         else:
-            delayed_print_words("Swings nail, goes to room 2 left half with enemy killed")#"You swing your nail out if front of yourself."
+            delayed_print_words("Swings nail, goes to room 2 left half")#"You swing your nail out if front of yourself."
             room_2_left_half()
 
 def first_combat_players_turn():
@@ -290,9 +328,17 @@ def first_combat_players_turn():
         room_2_left_half()
     delayed_print_words("Describe enemy")
     delayed_print_words(f"Reads Player hp:{player_hp}")
-    action = valid_input("What would you like to do?\nSuggestions:\n Jump out of the way\n Attack", ["left", "right", "jump", "attack", "exit"])
-    if "left" in action:
-        delayed_print_words("goes to room 2 left with enemy alive")
+    action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
+    if "left" in action and "jump" in action:
+        delayed_print_words("jumps to room 2 left")
+        room_2_left()
+    elif "right" in action and "jump" in action:
+        delayed_print_words("jumps to in pit")
+        in_pit()
+    elif "help" in action:
+        available_commands()
+    elif "left" in action:
+        delayed_print_words("goes to room 2 left")
         room_2_left()
     elif "right" in action:
         delayed_print_words("takes 1 damage")
@@ -301,7 +347,7 @@ def first_combat_players_turn():
         player_move = "right"
         first_combat_enemies_turn()
     elif "jump" in action:
-        delayed_print_words("Jumps out of way, it becomes enemies turn with play move set to jump")
+        delayed_print_words("Jumps out of way, it becomes enemies turn with player move set to jump")
         player_move = "jump"
         first_combat_enemies_turn()
     elif "attack" in action:
@@ -341,15 +387,17 @@ def room_2_right_half():
     global current_room
     current_room = room_2_right_half
     delayed_print_words("room 2 right half description with pit")
-    action = valid_input("What would you like to do?\nSuggestions:\n Move Right\n Jump to the Right", ["jump"and"left", "jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("goes to room 2 left half with enemy killed")
         room_2_left_half()
     elif "right" in action and "jump" in action:
         delayed_print_words("goes to room 2 right")
         room_2_right()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
-        delayed_print_words("goes to room 2 left half with enemy killed")
+        delayed_print_words("goes to room 2 left half")
         room_2_left_half()
     elif "right" in action:
         delayed_print_words("goes to in pit")
@@ -368,13 +416,21 @@ def in_pit():
     current_room = in_pit
     delayed_print_words("pit description")
     if room_2_right_wall_broken == False: 
-        action = valid_input("What would you like to do?\nSuggestions:\n Jump to the Left\n Jump to the Right", ["jump"and"left", "jump"and"right", "jump", "attack", "exit"])
+        action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
             delayed_print_words("goes to room 2 right half")
             room_2_right_half()
         elif "right" in action and "jump" in action:
             delayed_print_words("goes to room 2 right")
             room_2_right()
+        if "left" in action:
+            delayed_print_words("walks into edge of pit goes to in pit")
+            in_pit()
+        elif "right" in action:
+            delayed_print_words("walks into edge of pit goes to in pit")
+            in_pit()
+        elif "help" in action:
+            available_commands()
         elif "jump" in action:
             delayed_print_words("jumps, goes to in pit")
             in_pit()
@@ -391,39 +447,52 @@ def room_2_right():
     global current_room
     current_room = room_2_right
 
+    if room_2_right_wall_hp == 0:
+                room_2_right_wall_broken = True
+                room_2_right()
     if room_2_right_wall_broken == False:
         delayed_print_words("room 2 right description with wall unbroken")
-        action = valid_input("What would you like to do?\nSuggestions:\n Jump to the Left\n Attack the Wall\n Move Left", ["jump"and"left", "left", "jump", "attack", "exit"])
+        action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "jump" in action and "left" in action:
             delayed_print_words("jumps, goes to room 2 right half")
             room_2_right_half()
+        elif "right" in action and "jump" in action:
+            delayed_print_words("faceplants wall deals 1 damage to wall goes to room 2 right")
+            room_2_right_wall_hp -= 1
+            room_2_right()
+        elif "help" in action:
+            available_commands()
         elif "left" in action:
             delayed_print_words("goes to in pit")
             in_pit()
+        elif "right" in action:
+            delayed_print_words("walks into wall goes to room 2 right")
+            room_2_right()
         elif "jump" in action:
             delayed_print_words("jumps, goes to room 2 right")
             room_2_right()
         elif "attack" in action:
             delayed_print_words("attacks wall with nail, deals 1 damage to wall, goes to room 2 right")
             room_2_right_wall_hp -= 1
-            if room_2_right_wall_hp == 0:
-                room_2_right_wall_broken = True
-                room_2_right()
-            else:
-                room_2_right()
+            room_2_right()
         else:
             exit_to_title()
     else:
         delayed_print_words("room 2 right description with wall broken")
-        action = valid_input("What would you like to do?\nSuggestions:\n Jump to the Left\n Move Right\n Move Left", ["jump"and"left", "right", "left", "jump", "attack", "exit"])
+        action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "right", "left", "jump", "attack", "exit"])
         if "jump" in action and "left" in action:
             delayed_print_words("jumps, goes to room 2 right half")
             room_2_right_half()
+        elif "right" in action and "jump" in action:
+            delayed_print_words("goes to room 3 cliff")
+            room_3_cliff()
+        elif "help" in action:
+            available_commands()
         elif "left" in action:
             delayed_print_words("goes to in pit")
             in_pit()
         elif "right" in action:
-            delayed_print_words("goes to room 3 left")
+            delayed_print_words("goes to room 3 cliff")
             room_3_cliff()
         elif "jump" in action:
             delayed_print_words("jumps, goes to room 2 right")
@@ -439,13 +508,15 @@ def room_3_cliff():
     current_room = room_3_cliff
 
     delayed_print_words("room 3 cliff description")
-    action = valid_input("What would you like to do?\nSuggestions:\n Jump to the Right", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("goes to room 2 right")
         room_2_right()
     elif "right" in action and "jump" in action:
         delayed_print_words("goes to room 3 left")
         room_3_left()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes to room 2 right")
         room_2_right()
@@ -466,13 +537,15 @@ def room_3_left():
     current_room = room_3_left
 
     delayed_print_words("room 3 left description")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("faceplants wall goes to room 3 left")
         room_3_left()
     elif "right" in action and "jump" in action:
         delayed_print_words("jumps slightly to the right, goes to room 3 left")
         room_3_left()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("walks into wall goes to room 3 left")
         room_3_left()
@@ -493,13 +566,15 @@ def room_3_town():
     current_room = room_3_town
 
     delayed_print_words("room 3 town description")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit", "go into", "enter", "house"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit", "go into", "enter", "house"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps slightly to the left goes to room 3 town")
         room_3_left()
     elif "right" in action and "jump" in action:
         delayed_print_words("jumps slightly to the right, goes to room 3 town")
         room_3_left()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes to room 3 left")
         room_3_left()
@@ -525,13 +600,15 @@ def npc_house():
     current_room = npc_house
     if npc_house_npc_killed == False:
         delayed_print_words("npc house description with npc alive")
-        action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit", "talk", "speak"])
+        action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit", "talk", "speak"])
         if "left" in action and "jump" in action:
             delayed_print_words("hits head goes to npc house")
             npc_house()
         elif "right" in action and "jump" in action:
             delayed_print_words("hits head, goes to npc house")
             npc_house()
+        elif "help" in action:
+            available_commands()
         elif "left" in action:
             delayed_print_words("goes to room 3 town")
             room_3_town()
@@ -556,13 +633,15 @@ def npc_house():
             exit_to_title()
     else:
         delayed_print_words("npc house description with npc dead")
-        action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+        action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
             delayed_print_words("hits head goes to npc house")
             npc_house()
         elif "right" in action and "jump" in action:
             delayed_print_words("hits head, goes to npc house")
             npc_house()
+        elif "help" in action:
+            available_commands()
         elif "left" in action:
             delayed_print_words("goes to room 3 town")
             room_3_town()
@@ -583,13 +662,15 @@ def room_3_right():
     current_room = room_3_right
 
     delayed_print_words("room 3 right description")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps slightly to the left, goes to room 3 right")
         room_3_right()
     elif "right" in action and "jump" in action:
         delayed_print_words("jumps to the right, goes to room 4 left")
         room_4_left()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes to room 3 town")
         room_3_town()
@@ -610,13 +691,15 @@ def room_4_left():
     current_room = room_4_left
 
     delayed_print_words("room 4 left description")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps to the left, goes to room 3 right")
         room_3_right()
     elif "right" in action and "jump" in action:
         delayed_print_words("jumps slightly to the right, goes to room 4 left")
         room_4_left()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes to room 3 right")
         room_3_right()
@@ -637,13 +720,15 @@ def room_4_boss_room():
     current_room = room_4_boss_room
 
     delayed_print_words("room 4 boss room description")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps to the left, goes to room 4 left")
         room_4_left()
     elif "right" in action and "jump" in action:
         delayed_print_words("jumps slightly to the right, goes to room 4 boss room")
         room_4_boss_room()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes to room 4 left")
         room_4_left()
@@ -679,7 +764,7 @@ def boss_fight_players_turn_boss_right():
         title_screen()
 
     delayed_print_words(f"Reads Player Hp: {player_hp}")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("goes to boss turn player on left")
         boss_fight_boss_turn_player_left()
@@ -687,6 +772,8 @@ def boss_fight_players_turn_boss_right():
         delayed_print_words("takes 1 damage, goes to boss turn player on left")
         player_hp -= 1
         boss_fight_boss_turn_player_left()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes to boss turn player on left")
         boss_fight_boss_turn_player_left()
@@ -720,7 +807,7 @@ def boss_fight_players_turn_boss_left():
         title_screen()
 
     delayed_print_words(f"Reads Player Hp: {player_hp}")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("player takes 1 damage, goes to boss turn player right")
         player_hp -= 1
@@ -728,6 +815,8 @@ def boss_fight_players_turn_boss_left():
     elif "right" in action and "jump" in action:
         delayed_print_words("goes to boss turn player right")
         boss_fight_boss_turn_player_right()
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("player takes 1 damage, goes to boss turn player right")
         player_hp -= 1
@@ -864,7 +953,7 @@ def boss_fight_player_reaction_boss_in_air():
         title_screen()
 
     delayed_print_words(f"Reads Player Hp: {player_hp}")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps to the left")
         player_reaction_move = "left"
@@ -873,6 +962,8 @@ def boss_fight_player_reaction_boss_in_air():
         delayed_print_words("jumps to the right")
         player_reaction_move = "right"
         return False
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes left")
         player_reaction_move = "left"
@@ -909,13 +1000,15 @@ def boss_fight_player_reaction_boss_left():
         title_screen()
 
     delayed_print_words(f"Reads Player Hp: {player_hp}")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps to the left")
         return False
     elif "right" in action and "jump" in action:
         delayed_print_words("jumps to the right")
         return True
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes left")
         return False
@@ -948,13 +1041,15 @@ def boss_fight_player_reaction_boss_right():
         title_screen()
 
     delayed_print_words(f"Reads Player Hp: {player_hp}")
-    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "left", "right", "jump", "attack", "exit"])
+    action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps to the left")
         return True
     elif "right" in action and "jump" in action:
         delayed_print_words("jumps to the right")
         return False
+    elif "help" in action:
+        available_commands()
     elif "left" in action:
         delayed_print_words("goes left")
         return True
@@ -975,7 +1070,7 @@ def play_game():
     delayed_print_words("reads intro")#"You fall into the unknown, all you know is your mission is to kill some large beast plagueing this land."
     delayed_print_words("continues intro")#"Suddenly you hit the ground, Hard, but weirdly you don't feel any pain."
     delayed_print_words("finishes intro")#"You notice something a bit heavy hanging at your side, you look down and see what looks to be a nail around the size of a sword.\nInspecting this nail closer reveals that it has a few imperfections but you think you should be able to use it if you have to defend yourself."
-    delayed_print_words("goes to room 1 with wall unbroken")
+    delayed_print_words("goes to room 1")
     room_1()
 
 title_screen()
