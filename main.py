@@ -14,21 +14,83 @@ player_move = ""
 player_reaction_move = ""
 dodged = None
 word_delay = 0.#05
-current_room = None
+current_room = ""
+
+def create_save():
+    global room_1_right_wall_broken
+    global room_2_right_wall_broken
+    global npc_house_npc_killed
+    global player_hp
+    global player_dmg
+    global current_room
+    current_room = "start_game"
+    save_1 = open(f"saves\\save_1.txt", "w")
+
+    save_1.write("room_1_right_wall_broken:" + str(room_1_right_wall_broken) + " \n")
+    save_1.write("room_2_right_wall_broken:" + str(room_2_right_wall_broken) + " \n")
+    save_1.write("npc_house_npc_killed:" + str(npc_house_npc_killed) + " \n")
+    save_1.write("player_hp:" + str(player_hp) + " \n")
+    save_1.write("player_dmg:" + str(player_dmg) + " \n")
+    save_1.write("current_room:" + str(current_room) + " \n")
+    save_1.close()
+    start_game()
 
 def save_game():
+    global room_1_right_wall_broken
+    global room_2_right_wall_broken
+    global npc_house_npc_killed
+    global player_hp
+    global player_dmg
+    global current_room
+    save_1 = open(f"saves\\save_1.txt", "w")
 
+    save_1.write("room_1_right_wall_broken:" + str(room_1_right_wall_broken) + " \n")
+    save_1.write("room_2_right_wall_broken:" + str(room_2_right_wall_broken) + " \n")
+    save_1.write("npc_house_npc_killed:" + str(npc_house_npc_killed) + " \n")
+    save_1.write("player_hp:" + str(player_hp) + " \n")
+    save_1.write("player_dmg:" + str(player_dmg) + " \n")
+    save_1.write("current_room:" + str(current_room) + " \n")
+    save_1.close()
 
 def load_game():
-    
+    global room_1_right_wall_broken
+    global room_2_right_wall_broken
+    global npc_house_npc_killed
+    global player_hp
+    global player_dmg
+    global current_room
+    save_1 = open(f"saves\\save_1.txt", "r")
+    saved_variables = save_1.readlines()
+    for i in saved_variables:
+        if "room_1_right_wall_broken:" in i:
+            room_1_right_wall_broken = eval(i[25:])
+        elif "room_2_right_wall_broken:" in i:
+            room_2_right_wall_broken = eval(i[25:])
+        elif "npc_house_npc_killed:" in i:
+            npc_house_npc_killed = eval(i[21:])
+        elif "player_hp:" in i:
+            player_hp = int(i[10:])
+        elif "player_dmg:" in i:
+            player_dmg = float(i[11:])
+        elif "current_room:" in i:
+            current_room = i[13:]
+    save_1.close()
+    eval(current_room)()
+
+def play_game():
+    choice = valid_input("What would you like to do?\n Start New Save\n Load a Save", ["new", "load", "start"]).lower()
+    if "new" in choice or "start" in choice:
+        create_save()
+    else:
+        load_game()
 
 def available_commands():
     global current_room
     global npc_house_npc_killed
-    if current_room == npc_house and npc_house_npc_killed == False:
+    if current_room == "npc_house" and "npc_house_npc_killed" == False:
         delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Talk\n Exit to Title\n Help")
         current_room()
-    elif current_room == room_3_town:
+    elif current_room == "room_3_town":
         delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Enter House\n Exit to Title\n Help")
         current_room()
     else:
@@ -39,10 +101,11 @@ def exit_to_title():
     global current_room
     answer = valid_input("Are you sure you want to exit the game?\n Yes\n No", ["yes", "no"])
     if "yes" in answer:
+        save_game()
         title_screen()
     else:
         delayed_print_words(f"goes to {current_room}")
-        current_room()
+        eval(current_room)()
 
 def delayed_print_words(text):
     for char in text:
@@ -103,7 +166,7 @@ def set_text_speed():
 
 def room_1():
     global current_room
-    current_room = room_1
+    current_room = "room_1"
     delayed_print_words("Room 1 Description")#"You find yourself in the middle of a decently sized, but dimly-lit cavern.\nOn each side of this cavern a wall seems to extend upwards forever."
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
@@ -134,7 +197,7 @@ def room_1():
 
 def room_1_left():
     global current_room
-    current_room = room_1_left
+    current_room = "room_1_left"
     delayed_print_words("room 1 left description")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
@@ -163,7 +226,7 @@ def room_1_right():
 
     global room_1_right_wall_broken
     global current_room
-    current_room = room_1_right 
+    current_room = "room_1_right" 
 
     if room_1_right_wall_broken == False:
         delayed_print_words("room 1 right description with wall unbroken")
@@ -220,7 +283,7 @@ def room_1_right():
             
 def room_2_far_left():
     global current_room
-    current_room = room_2_far_left
+    current_room = "room_2_far_left"
     if room_2_left_enemy_killed == False:
         delayed_print_words("room 2 far left description with enemy alive")#"You squeeze your way through the hole you had made in the wall.\n You look around and see a long cavern ahead.\nYou notice there is a ceiling in here a little ways above your head.\nYou see something moving farther along the cavern."
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
@@ -274,7 +337,7 @@ def room_2_far_left():
     
 def room_2_left():
     global current_room
-    current_room = room_2_left
+    current_room = "room_2_left"
     delayed_print_words("room 2 left description")
     if room_2_left_enemy_killed == False:
         first_combat_players_turn()
@@ -312,7 +375,7 @@ def first_combat_players_turn():
     global room_2_left_enemy_killed
     global player_move
     global current_room
-    current_room = first_combat_players_turn
+    current_room = "first_combat_players_turn"
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title screen")
@@ -380,7 +443,7 @@ def first_combat_enemies_turn():
 
 def room_2_right():
     global current_room
-    current_room = room_2_right
+    current_room = "room_2_right"
     delayed_print_words("room 2 right description with pit")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
@@ -408,7 +471,7 @@ def room_2_right():
 
 def in_pit():
     global current_room
-    current_room = in_pit
+    current_room = "in_pit"
     delayed_print_words("pit description")
     if room_2_right_wall_broken == False: 
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
@@ -440,7 +503,7 @@ def room_2_far_right():
     global room_2_right_wall_hp
     global room_2_right_wall_broken
     global current_room
-    current_room = room_2_far_right
+    current_room = "room_2_far_right"
 
     if room_2_right_wall_broken == False:
         if room_2_right_wall_hp == 0:
@@ -500,7 +563,7 @@ def room_2_far_right():
 
 def room_3_cliff():
     global current_room
-    current_room = room_3_cliff
+    current_room = "room_3_cliff"
 
     delayed_print_words("room 3 cliff description")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
@@ -529,7 +592,7 @@ def room_3_cliff():
 
 def room_3_left():
     global current_room
-    current_room = room_3_left
+    current_room = "room_3_left"
 
     delayed_print_words("room 3 left description")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
@@ -558,7 +621,7 @@ def room_3_left():
 
 def room_3_town():
     global current_room
-    current_room = room_3_town
+    current_room = "room_3_town"
 
     delayed_print_words("room 3 town description")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit", "go into", "enter", "house"])
@@ -592,7 +655,7 @@ def npc_house():
     global npc_house_npc_killed
     global player_dmg
     global current_room
-    current_room = npc_house
+    current_room = "npc_house"
     if npc_house_npc_killed == False:
         delayed_print_words("npc house description with npc alive")
         action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit", "talk", "speak"])
@@ -654,7 +717,7 @@ def npc_house():
 
 def room_3_right():
     global current_room
-    current_room = room_3_right
+    current_room = "room_3_right"
 
     delayed_print_words("room 3 right description")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
@@ -683,7 +746,7 @@ def room_3_right():
 
 def room_4_left():
     global current_room
-    current_room = room_4_left
+    current_room = "room_4_left"
 
     delayed_print_words("room 4 left description")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
@@ -712,7 +775,7 @@ def room_4_left():
 
 def room_4_boss_room():
     global current_room
-    current_room = room_4_boss_room
+    current_room = "room_4_boss_room"
 
     delayed_print_words("room 4 boss room description")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
@@ -749,7 +812,7 @@ def boss_fight_players_turn_boss_right():
     global player_dmg
     global boss_hp
     global player_move
-    current_room = boss_fight_players_turn_boss_right
+    current_room = "boss_fight_players_turn_boss_right"
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
@@ -792,7 +855,7 @@ def boss_fight_players_turn_boss_left():
     global player_dmg
     global boss_hp
     global player_move
-    current_room = boss_fight_players_turn_boss_left
+    current_room = "boss_fight_players_turn_boss_left"
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
@@ -938,7 +1001,7 @@ def boss_fight_player_reaction_boss_in_air():
     global boss_hp
     global player_move
     global player_reaction_move
-    current_room = boss_fight_player_reaction_boss_in_air
+    current_room = "boss_fight_player_reaction_boss_in_air"
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
@@ -985,7 +1048,7 @@ def boss_fight_player_reaction_boss_left():
     global player_dmg
     global boss_hp
     global player_move
-    current_room = boss_fight_player_reaction_boss_left
+    current_room = "boss_fight_player_reaction_boss_left"
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
@@ -1026,7 +1089,7 @@ def boss_fight_player_reaction_boss_right():
     global player_dmg
     global boss_hp
     global player_move
-    current_room = boss_fight_player_reaction_boss_right
+    current_room = "boss_fight_player_reaction_boss_right"
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
@@ -1061,7 +1124,7 @@ def boss_fight_player_reaction_boss_right():
     else:
         exit_to_title()
 
-def play_game():
+def start_game():
     delayed_print_words("reads intro")#"You fall into the unknown, all you know is your mission is to kill some large beast plagueing this land."
     delayed_print_words("continues intro")#"Suddenly you hit the ground, Hard, but weirdly you don't feel any pain."
     delayed_print_words("finishes intro")#"You notice something a bit heavy hanging at your side, you look down and see what looks to be a nail around the size of a sword.\nInspecting this nail closer reveals that it has a few imperfections but you think you should be able to use it if you have to defend yourself."
