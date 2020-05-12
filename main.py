@@ -190,33 +190,33 @@ def room_1():
         exit_to_title()
     else:
         delayed_print_words("You swing your sword out in front of you.")
-        room_1() 
+        room_1()
 
 def room_1_left():
     global current_room
     current_room = "room_1_left"
-    delayed_print_words("room 1 left description")
+    delayed_print_words("""You look at the wall.\nIt seems to be of sturdy construction.""")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("faceplants wall goes to room 1 left")
+        delayed_print_words("""You leap to the left as your face smashes against the wall.""")
         room_1_left()
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps to room 1")
+        delayed_print_words("""You leap towards the middle of the cavern.""")
         room_1()
     elif "help" in action:
         available_commands()
     elif "left" in action:
         delayed_print_words("Walks into wall goes to room 1 left")
     elif "right" in action:
-        delayed_print_words("goes to room 1")
+        delayed_print_words("""You walk into the wall.""")
         room_1()
     elif "jump" in action:
-        delayed_print_words("Jumps, goes to room 1 left")
+        delayed_print_words("""You leap high into the air and land right where you jumped from.""")
         room_1_left()
     elif "exit" in action:
         exit_to_title()
     else:
-        delayed_print_words("Swings nail, goes to room 1 left")
+        delayed_print_words("""You swing your sword at the wall.\nA piece of the stone chips off.""")
         room_1_left()
 
 def room_1_right():
