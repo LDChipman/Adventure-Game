@@ -625,30 +625,30 @@ def room_3_town():
     global current_room
     current_room = "room_3_town"
 
-    delayed_print_words("room 3 town description")
+    delayed_print_words("""You are in a small town with unlit street lamps scattered about.\nLooking at all the houses you notice only one has light shining from within.""")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit", "go into", "enter", "house"])
     if "left" in action and "jump" in action:
-        delayed_print_words("jumps slightly to the left goes to room 3 town")
+        delayed_print_words("""You leap to the left.""")
         room_3_left()
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps slightly to the right, goes to room 3 town")
+        delayed_print_words("""You leap to the right.""")
         room_3_left()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes to room 3 left")
+        delayed_print_words("""You walk off in the direction of the cliff.\nAfter a long walk you finally reach the cliffside.""")
         room_3_left()
     elif "right" in action:
-        delayed_print_words("goes to room 3 right")
+        delayed_print_words("""You walk off to the right.\nAfter a long walk you see a large opened iron gateway.""")
         room_3_right()
     elif "jump" in action:
-        delayed_print_words("jumps, goes to room 3 town")
+        delayed_print_words("""You leap high into the air and land back where you leaped from.""")
         room_3_town()
     elif "attack" in action:
-        delayed_print_words("swings nail, goes to room 3 town")
+        delayed_print_words("""You swing your sword out in front of you.""")
         room_3_town()
     elif "enter" in action or "go into" in action or "house" in action:
-        delayed_print_words("goes to npc house")
+        delayed_print_words("""You go up to the one house with its lights on.\nYou go to check the door and notice it is unlocked.\nYou open the door and go into the house.""")
         npc_house()
     else:
         exit_to_title()
