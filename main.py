@@ -779,27 +779,27 @@ def room_4_boss_room():
     global current_room
     current_room = "room_4_boss_room"
 
-    delayed_print_words("room 4 boss room description")
+    delayed_print_words("""You are in a large stone room the walls have large stained glass windows.\nMoon light flows through the windows lighting up the room.""")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("jumps to the left, goes to room 4 boss room")
+        delayed_print_words("""You leap to the left smashing your face against the wall above the entrance.""")
         room_4_boss_room()
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps slightly to the right, goes to room 4 boss room")
+        delayed_print_words("""You leap to the right.""")
         room_4_boss_room()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes to room 4 left")
+        delayed_print_words("""You walk out of the castle entrance.""")
         room_4_left()
     elif "right" in action:
-        delayed_print_words("goes to room 4 boss fight")
+        delayed_print_words("""You walk to the right of the large room.""")
         room_4_boss_fight()
     elif "jump" in action:
-        delayed_print_words("jumps, goes to room 4 boss room")
+        delayed_print_words("""You leap high into the air and land back where you leaped from.""")
         room_4_boss_room()
     elif "attack" in action:
-        delayed_print_words("swings nail, goes to room 4 boss room")
+        delayed_print_words("""swings nail, goes to room 4 boss room""")
         room_4_boss_room()
     else:
         exit_to_title()
