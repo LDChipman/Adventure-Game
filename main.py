@@ -373,42 +373,41 @@ def first_combat_players_turn():
     current_room = "first_combat_players_turn"
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title screen")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif room_2_left_enemy_hp <= 0:
-        delayed_print_words("Describe enemy death, goes to room 2 left with enemy killed")
+        delayed_print_words("""As your sword connects with the beast, its thick carapace splits.\nBlack foul-smelling blood pours out of the gaping wound and the giant bug’s lifeless corpse falls to the ground.""")
         room_2_left_enemy_killed = True
         room_2_left()
-    delayed_print_words("Describe enemy")
+    delayed_print_words("In front of you, you see a large bug-like creature come barreling towards you.")
     delayed_print_words(f"Your HP:{player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("jumps to room 2 far left")
+        delayed_print_words("You leap out of the way of the beasts attack.")
         player_move = "jump"
         first_combat_enemies_turn()
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps to in pit")
+        delayed_print_words("""You leap over the beast.\nAs you get to the other side of the beast you see the ground isnt at the same level you jumped from, and you fall into a hole in the ground.""")
         in_pit()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes to room 2 far left")
+        delayed_print_words("You run to the left of the long cavern away from the beast.")
         room_2_far_left()
     elif "right" in action:
-        delayed_print_words("takes 1 damage")
-        delayed_print_words("it becomes enemies turn with player move set to right")
+        delayed_print_words("""You walk to the right going headfirst into the beasts attack.\nYou feel a sharp pain run through your body""")
         player_hp -= 1
         player_move = "right"
         first_combat_enemies_turn()
     elif "jump" in action:
-        delayed_print_words("Jumps out of way, it becomes enemies turn with player move set to jump")
+        delayed_print_words("You leap out of the way of the beasts attack.")
         player_move = "jump"
         first_combat_enemies_turn()
     elif "attack" in action:
-        delayed_print_words("Deal 1 damage to enemy and it becomes enemies turn with player move set to attack")
+        delayed_print_words("You swing your sword at the beast.")
         room_2_left_enemy_hp -= player_dmg
         player_move = "attack"
         first_combat_enemies_turn()
@@ -424,6 +423,9 @@ def first_combat_enemies_turn():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif room_2_left_enemy_hp <= 0:
         delayed_print_words("Describe enemy death, goes to room 2 left with enemy killed")
@@ -815,6 +817,9 @@ def boss_fight_players_turn_boss_right():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
@@ -858,6 +863,9 @@ def boss_fight_players_turn_boss_left():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
@@ -901,6 +909,9 @@ def boss_fight_boss_turn_player_left():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
@@ -952,6 +963,9 @@ def boss_fight_boss_turn_player_right():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
@@ -1004,6 +1018,9 @@ def boss_fight_player_reaction_boss_in_air():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
@@ -1051,6 +1068,9 @@ def boss_fight_player_reaction_boss_left():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
@@ -1092,6 +1112,9 @@ def boss_fight_player_reaction_boss_right():
 
     if player_hp <= 0:
         delayed_print_words("Describe Death and los, goes to title")
+        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1.write("Dead")
+        save_1.close()
         title_screen()
     elif boss_hp <= 0:
         delayed_print_words("Describe bosses death and win, goes to title")
