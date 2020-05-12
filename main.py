@@ -567,27 +567,27 @@ def room_3_cliff():
     global current_room
     current_room = "room_3_cliff"
 
-    delayed_print_words("room 3 cliff description")
+    delayed_print_words("""You stand at the edge of a cliffside.\nTo the right the earth has been broken away.\n Looking over the edge of the cliff you see a long way down the ground can be seen.\nOff in the distance a small town can be seen.""")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("goes to room 2 far right")
+        delayed_print_words("""You leap into the cavern.""")
         room_2_far_right()
     elif "right" in action and "jump" in action:
-        delayed_print_words("goes to room 3 left")
+        delayed_print_words("""You leap off the cliff.\nYou fall for a few seconds and land on the ground below.\nWeirdly you felt no pain when you impacted the ground.""")
         room_3_left()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes to room 2 far right")
+        delayed_print_words("""You walk into the cavern.""")
         room_2_far_right()
     elif "right" in action:
-        delayed_print_words("goes to room 3 left")
+        delayed_print_words("""You walk off the cliff.\nYou fall for a few seconds and land on the ground below.\nWeirdly you felt no pain when you impacted the ground.""")
         room_3_left()
     elif "jump" in action:
-        delayed_print_words("jumps, goes to room 3 cliff")
+        delayed_print_words("""You leap high into the air and land back where you leaped from.""")
         room_3_cliff()
     elif "attack" in action:
-        delayed_print_words("swings nail, goes to room 3 cliff")
+        delayed_print_words("""You swing your sword out in front of you.""")
         room_3_cliff()
     else:
         exit_to_title()
