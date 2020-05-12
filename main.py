@@ -508,56 +508,57 @@ def room_2_far_right():
 
     if room_2_right_wall_broken == False:
         if room_2_right_wall_hp == 0:
+            delayed_print_words("""The cracks in the wall widen faster and faster!\nSuddenly pieces of the wall start falling down.\nYou jump out of the way narrowly dodging the falling debris.\nLight starts pouring in!\nAs the dust settles you see the source of the light, the moon shining beautifully.""")
             room_2_right_wall_broken = True
             room_2_far_right()
-        delayed_print_words("room 2 right description with wall unbroken")
+        delayed_print_words("""You are in a large cavern\nUnlike the other caverns you’ve been in this one very well lit.\nLight in this cavern is coming from a large wall on the right\nThe wall has large cracks running down it.""")
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "jump" in action and "left" in action:
-            delayed_print_words("jumps, goes to room 2 right")
+            delayed_print_words("""You leap over the pit to the left.""")
             room_2_right()
         elif "right" in action and "jump" in action:
-            delayed_print_words("faceplants wall deals 1 damage to wall goes to room 2 far right")
+            delayed_print_words("""You leap to the right as you smash into the wall.\nAs you impact the wall the cracks widen.""")
             room_2_right_wall_hp -= 1
             room_2_far_right()
         elif "help" in action:
             available_commands()
         elif "left" in action:
-            delayed_print_words("goes to in pit")
+            delayed_print_words("""You walk to the left and fall into the pit.""")
             in_pit()
         elif "right" in action:
-            delayed_print_words("walks into wall goes to room 2 far right")
+            delayed_print_words("""You walk into the wall.""")
             room_2_far_right()
         elif "jump" in action:
-            delayed_print_words("jumps, goes to room 2 far right")
+            delayed_print_words("""You leap high into the air and land back where you leaped from.""")
             room_2_far_right()
         elif "attack" in action:
-            delayed_print_words("attacks wall with nail, deals 1 damage to wall, goes to room 2 far right")
+            delayed_print_words("""You swing your sword at the large wall\nAs you do the cracks in the wall widen.""")
             room_2_right_wall_hp -= 1
             room_2_far_right()
         else:
             exit_to_title()
     else:
-        delayed_print_words("room 2 right description with wall broken")
+        delayed_print_words("""You are in a large cavern\nUnlike the other caverns you’ve been in this one extremely well lit.\nMoon light is pouring in from a ginormous hole on the right side of the cavern.""")
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "right", "left", "jump", "attack", "exit"])
         if "jump" in action and "left" in action:
-            delayed_print_words("jumps, goes to room 2 right")
+            delayed_print_words("""You leap over the pit to the left.""")
             room_2_right()
         elif "right" in action and "jump" in action:
-            delayed_print_words("goes to room 3 cliff")
+            delayed_print_words("""You leap to the right out of the large hole in the wall.""")
             room_3_cliff()
         elif "help" in action:
             available_commands()
         elif "left" in action:
-            delayed_print_words("goes to in pit")
+            delayed_print_words("""You walk to the left and fall into the pit.""")
             in_pit()
         elif "right" in action:
-            delayed_print_words("goes to room 3 cliff")
+            delayed_print_words("""You walk to the right out the hole in the wall.""")
             room_3_cliff()
         elif "jump" in action:
-            delayed_print_words("jumps, goes to room 2 far right")
+            delayed_print_words("""You leap high into the air and land back where you leaped from.""")
             room_2_far_right()
         elif "attack" in action:
-            delayed_print_words("swings nail, goes to room 2 far right")
+            delayed_print_words("You swing your sword out in front of you.")
             room_2_far_right()
         else:
             exit_to_title()
