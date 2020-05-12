@@ -171,7 +171,7 @@ def valid_input(input_text, options=[]):
         for option in options:
             if option in response:
                 return response
-        delayed_print_words("""That isn't a response i know what to do\
+        delayed_print_words("""That isn't a response I know what to do\
  with. \nPlease check your spelling and try again.""")
         delayed_print_words("For a list of Commands enter Help")
 
@@ -1116,7 +1116,7 @@ om.""")
 ack where you leaped from.""")
         room_4_boss_room()
     elif "attack" in action:
-        delayed_print_words("""swings nail, goes to room 4 boss room\
+        delayed_print_words("""You swing your sword out in front of you\
 """)
         room_4_boss_room()
     else:
@@ -1238,7 +1238,7 @@ s and live there happily for the rest of your days.\n\nYou Have Won!\
     delayed_print_words("""To the left, you see what looks to be a c\
 reature wearing a large suit of iron armor, wielding a giant maul.\
 """)
-    delayed_print_words(f"Reads Player Hp: {player_hp}")
+    delayed_print_words(f"Your Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"le\
 ft", "jump"and"right", "help", "left", "right", "jump", "attack", "ex\
 it"])
