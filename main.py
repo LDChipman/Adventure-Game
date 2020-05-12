@@ -167,29 +167,29 @@ def set_text_speed():
 def room_1():
     global current_room
     current_room = "room_1"
-    delayed_print_words("Room 1 Description")
+    delayed_print_words("""You find yourself in the middle of a decently sized, but dimly-lit cavern.\nOn each side of this cavern a wall seems to extend upwards forever.""")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("jumps to room 1 left")
+        delayed_print_words("""You leap towards the left side of the cavern.""")
         room_1_left()
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps to room 1 right")
+        delayed_print_words("""You leap towards the right of the cavern.""")
         room_1_right()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("Goes to room 1 left")
+        delayed_print_words("""You walk to the left side of the cavern.""")
         room_1_left()
     elif "right" in action:
-        delayed_print_words("goes to room 1 right with wall unbroken")
+        delayed_print_words("""You walk to the right side of the cavern.""")
         room_1_right()
     elif "jump" in action:
-        delayed_print_words("jumps, goes to room 1")
+        delayed_print_words("""You leap high into the air and land right where you jumped from.""")
         room_1()
     elif "exit" in action:
         exit_to_title()
     else:
-        delayed_print_words("Swings nail, goes to room 1")
+        delayed_print_words("You swing your sword out in front of you.")
         room_1() 
 
 def room_1_left():
@@ -1058,7 +1058,7 @@ def boss_fight_player_reaction_boss_left():
         delayed_print_words("Describe bosses death and win, goes to title")
         title_screen()
     delayed_print_words("boss on left winding up slam attack description")
-    delayed_print_words(f"Reads Player Hp: {player_hp}")
+    delayed_print_words(f"Your Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps to the left")
@@ -1099,7 +1099,7 @@ def boss_fight_player_reaction_boss_right():
         delayed_print_words("Describe bosses death and win, goes to title")
         title_screen()
     delayed_print_words("boss on right winding up slam attack description")
-    delayed_print_words(f"Reads Player Hp: {player_hp}")
+    delayed_print_words(f"Your Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("jumps to the left")
@@ -1126,10 +1126,7 @@ def boss_fight_player_reaction_boss_right():
         exit_to_title()
 
 def start_game():
-    delayed_print_words("reads intro")#"You fall into the unknown, all you know is your mission is to kill some large beast plagueing this land."
-    delayed_print_words("continues intro")#"Suddenly you hit the ground, Hard, but weirdly you don't feel any pain."
-    delayed_print_words("finishes intro")#"You notice something a bit heavy hanging at your side, you look down and see what looks to be a nail around the size of a sword.\nInspecting this nail closer reveals that it has a few imperfections but you think you should be able to use it if you have to defend yourself."
-    delayed_print_words("goes to room 1")
+    delayed_print_words("reads intro")
     room_1()
 
 title_screen()
