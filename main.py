@@ -141,7 +141,7 @@ Yes\n No""", ["yes", "no"])
 
 
 def delayed_print_words(text):
-    
+
     global word_delay
     for char in text:
         sleep(word_delay)
@@ -153,6 +153,7 @@ def delayed_print_words(text):
 
 def valid_input(input_text, options=[]):
 
+    global word_delay
     while True:
         sleep(word_delay)
         response = input(delayed_print_words(input_text)).lower()
