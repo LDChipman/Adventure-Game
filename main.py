@@ -137,12 +137,12 @@ Yes\n No""", ["yes", "no"])
         save_game()
         title_screen()
     else:
-        delayed_print_words(f"goes to {current_room}")
         eval(current_room)()
 
 
 def delayed_print_words(text):
-
+    
+    global word_delay
     for char in text:
         sleep(word_delay)
         print(char, end="")
