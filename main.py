@@ -226,56 +226,56 @@ def room_1_right():
     current_room = "room_1_right" 
 
     if room_1_right_wall_broken == False:
-        delayed_print_words("room 1 right description with wall unbroken")
+        delayed_print_words("""You look at the wall.\nPart of the wall has large cracks down it.\nPeering through the largest crack, you notice on the other side there is something moving.""")
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "right", "left", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
-            delayed_print_words("jumps to room 1")
+            delayed_print_words("""You leap towards the middle of the cavern.""")
             room_1()
         elif "right" in action and "jump" in action:
-            delayed_print_words("faceplants wall goes to room 1 right")
+            delayed_print_words("""You leap to the right as your face smashes against the wall.""")
             room_1_right()
         elif "help" in action:
             available_commands()
         elif "right" in action:
-            delayed_print_words("walks into wall goes to room 1 right")
+            delayed_print_words("""You walk into the wall.""")
             room_1_right()
         elif "left" in action:
-            delayed_print_words("Goes to room 1")
+            delayed_print_words("""You walk to the middle of the cavern.""")
             room_1()
         elif "jump" in action:
-            delayed_print_words("Jumps, goes to room 1 right")
+            delayed_print_words("""You leap high into the air and land right where you jumped from.""")
             room_1_right()
         elif "exit" in action:
             exit_to_title()
         else:
-            delayed_print_words("Swings nail, goes to room 1 right with wall broken")
+            delayed_print_words("""You swing your sword at the wall.\nWhen your sword makes contact with the wall, the cracks begin to widen!\nAs the cracks in the wall rapidly get bigger a portion of the wall crumbles to the ground.\nWith the wall broken you can probably squeeze through.""")
             room_1_right_wall_broken = True
             room_1_right()
 
     if room_1_right_wall_broken == True:
-        delayed_print_words("room 1 right description with wall broken")
+        delayed_print_words("""You are standing on the right side of a dimly lit cavern.\nThe wall to your right seems to have been broken.\nThe hole looks large enough to squeeze through.""")
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
-            delayed_print_words("jumps to room 1")
+            delayed_print_words("""You leap towards the middle of the cavern.""")
             room_1()
         elif "right" in action and "jump" in action:
-            delayed_print_words("jumps, goes to room 1 right")
+            delayed_print_words("""You leap to the right as your face smashes against the wall.""")
             room_1_right()
         elif "help" in action:
             available_commands()
         elif "left" in action:
-            delayed_print_words("goes to room 1")
+            delayed_print_words("""You walk to the middle of the cavern.""")
             room_1()
         elif "jump" in action:
-            delayed_print_words("Jumps, goes to room 1 right")
+            delayed_print_words("""You leap high into the air and land right where you jumped from.""")
             room_1_right()
         elif "attack" in action:
-            delayed_print_words("swings nail, goes to room 1 right")
+            delayed_print_words("""You swing your sword at the wall.\nA bit of the stone around the hole chips off.""")
             room_1_right()
         elif "exit" in action:
             exit_to_title()
         else:
-            delayed_print_words("goes to room 2 far left")
+            delayed_print_words("""You squeeze your way through the hole in the wall.""")
             room_2_far_left()
             
 def room_2_far_left():
