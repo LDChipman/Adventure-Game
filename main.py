@@ -1145,7 +1145,7 @@ def boss_fight_player_reaction_boss_right():
         exit_to_title()
 
 def start_game():
-    delayed_print_words("reads intro")
+    delayed_print_words("""You are falling through a seemingly endless void.\nFinally the ground comes in to view.\nAs you smash into the ground with incredible force.\nOddly though you feel no pain on impact.\nAs your senses come to you fully you notice a bit of extra weight on your left side.\nLooking down you see an old slightly worn sword in a sheathe at your waist.""")
     room_1()
 
 title_screen()
