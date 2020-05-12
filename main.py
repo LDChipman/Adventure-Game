@@ -59,26 +59,33 @@ def load_game():
     global player_hp
     global player_dmg
     global current_room
-    save_1 = open(f"saves\\save_1.txt", "r")
-    saved_variables = save_1.readlines()
-    for i in saved_variables:
-        if "room_1_right_wall_broken:" in i:
-            room_1_right_wall_broken = eval(i[25:])
-        elif "room_2_right_wall_broken:" in i:
-            room_2_right_wall_broken = eval(i[25:])
-        elif "npc_house_npc_killed:" in i:
-            npc_house_npc_killed = eval(i[21:])
-        elif "player_hp:" in i:
-            player_hp = int(i[10:])
-        elif "player_dmg:" in i:
-            player_dmg = float(i[11:])
-        elif "current_room:" in i:
-            current_room = i[13:]
-    save_1.close()
-    eval(current_room)()
+    try:
+         save_1 = open(f"saves\\save_1.txt", "r")
+    except FileNotFoundError:
+        delayed_print_words("You don't have a save file.")
+        play_game()
+    has_a_save = True
+    if has_a_save:
+        save_1 = open(f"saves\\save_1.txt", "r")
+        saved_variables = save_1.readlines()
+        for i in saved_variables:
+            if "room_1_right_wall_broken:" in i:
+                room_1_right_wall_broken = eval(i[25:])
+            elif "room_2_right_wall_broken:" in i:
+                room_2_right_wall_broken = eval(i[25:])
+            elif "npc_house_npc_killed:" in i:
+                npc_house_npc_killed = eval(i[21:])
+            elif "player_hp:" in i:
+                player_hp = int(i[10:])
+            elif "player_dmg:" in i:
+                player_dmg = float(i[11:])
+            elif "current_room:" in i:
+                current_room = i[13:]
+        save_1.close()
+        eval(current_room)()
 
 def play_game():
-    choice = valid_input("What would you like to do?\n Start New Save\n Load a Save", ["new", "load", "start"]).lower()
+    choice = valid_input("What would you like to do?\n Start New Save\n Load your Save", ["new", "load", "start"]).lower()
     if "new" in choice or "start" in choice:
         create_save()
     else:
