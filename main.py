@@ -659,60 +659,60 @@ def npc_house():
     global current_room
     current_room = "npc_house"
     if npc_house_npc_killed == False:
-        delayed_print_words("npc house description with npc alive")
+        delayed_print_words("""You are standing inside a small house with swords and armor hanging on the walls.\nTo the right you see an old man sitting in a chair.""")
         action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit", "talk", "speak"])
         if "left" in action and "jump" in action:
-            delayed_print_words("hits head goes to npc house")
+            delayed_print_words("""You leap to the left hitting your head on the ceiling of the house.""")
             npc_house()
         elif "right" in action and "jump" in action:
-            delayed_print_words("hits head, goes to npc house")
+            delayed_print_words("""You leap to the right hitting your head on the ceiling of the house.""")
             npc_house()
         elif "help" in action:
             available_commands()
         elif "left" in action:
-            delayed_print_words("goes to room 3 town")
+            delayed_print_words("""You walk out the door of the house.""")
             room_3_town()
         elif "right" in action:
-            delayed_print_words("walks into wall of house, goes to npc house")
+            delayed_print_words("""You walk to the right of the house.""")
             npc_house()
         elif "jump" in action:
-            delayed_print_words("hits head, goes to npc house")
+            delayed_print_words("""You leap into the air hitting your head on the ceiling of the house.""")
             room_3_town()
         elif "attack" in action:
-            delayed_print_words("kills npc, goes to npc house")
+            delayed_print_words("""You swing your sword out at the old man, decapitating him.\nHis lifeless body falls to the ground.""")
             npc_house_npc_killed = True
             npc_house()
         elif "talk" in action or "speak" in action and player_dmg == 1:
-            delayed_print_words("talks to npc, npc gives better weapon, goes to npc house")
+            delayed_print_words("""You go up to the old man, as he sees you, he says\n\"Why hello there fella, haven’t seen many people around here in a while.\nThat monster has come by and killed all but me.\nI see you’ve got yourself a sword there\nYou wouldn’t happen to be going to slay that terrible beast, would ya?\nHmm the silent type ay.\nWell if you are, he stays at the edge of town, his lair lies behind a large iron gateway...\n Or so i have been told, i haven’t left my house in years.\nBack when i was younger i was a quite the fierce warrior, but now im just an old man.\nHere take this sword with ya, its much sharper than your own.\nShould help you make short work of the beast!\"""")
             player_dmg = 1.5
             npc_house()
         elif "talk" in action or "speak" in action:
-            delayed_print_words("npc tells player they have nothing more to give, goes to npc house")
+            delayed_print_words("""You go up to the old man, he looks up and says to you\n\"I’m afraid i have nothing left to give ya.\nOnce that beast has been slain you are welcome to live here in the town.\nPlenty of places for you to choose from since he’s killed everyone other than me.\"""")
             npc_house()
         else:
             exit_to_title()
     else:
-        delayed_print_words("npc house description with npc dead")
+        delayed_print_words("""You are standing inside a small house with swords and armor hanging on the walls.\nTo the right you see the decapitated corpse of an old man laying on the floor.""")
         action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
-            delayed_print_words("hits head goes to npc house")
+            delayed_print_words("""You leap to the left hitting your head on the ceiling of the house.""")
             npc_house()
         elif "right" in action and "jump" in action:
-            delayed_print_words("hits head, goes to npc house")
+            delayed_print_words("""You leap to the right hitting your head on the ceiling of the house.""")
             npc_house()
         elif "help" in action:
             available_commands()
         elif "left" in action:
-            delayed_print_words("goes to room 3 town")
+            delayed_print_words("""You walk out the door of the house.""")
             room_3_town()
         elif "right" in action:
-            delayed_print_words("walks into wall of house, goes to npc house")
+            delayed_print_words("""You walk to the right of the house.""")
             npc_house()
         elif "jump" in action:
-            delayed_print_words("hits head, goes to npc house")
+            delayed_print_words("""You leap into the air hitting your head on the ceiling of the house.""")
             room_3_town()
         elif "attack" in action:
-            delayed_print_words("swings nail, goes to npc house")
+            delayed_print_words("""You swing your sword out in front of you.""")
             npc_house()
         else:
             exit_to_title()
