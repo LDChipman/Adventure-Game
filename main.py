@@ -13,7 +13,7 @@ player_dmg = 1
 player_move = ""
 player_reaction_move = ""
 dodged = None
-word_delay = 0.0  # 05
+word_delay = 0.05
 current_room = ""
 
 
