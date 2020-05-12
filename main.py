@@ -1,5 +1,6 @@
 from time import sleep
 import random
+from sys import stdout
 
 room_1_right_wall_broken = False
 room_2_right_wall_broken = False
@@ -144,8 +145,9 @@ def delayed_print_words(text):
 
     global word_delay
     for char in text:
-        sleep(word_delay)
         print(char, end="")
+        sleep(word_delay)
+        stdout.flush()
     sleep(0.5)
     print("")
     return ""
