@@ -215,7 +215,7 @@ def set_text_speed():
     global word_delay
     delayed_print_words("Please input the text speed you want:")
     text_speed = input()
-    if text_speed > 2:
+    if float(text_speed) > 2:
         delayed_print_words("That number is to High")
         set_text_speed()
     elif is_float(text_speed):
