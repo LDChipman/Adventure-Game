@@ -1,6 +1,7 @@
 from time import sleep
 import random
 from sys import stdout
+from pathlib import Path
 
 room_1_right_wall_broken = False
 room_2_right_wall_broken = False
@@ -16,6 +17,8 @@ player_reaction_move = ""
 dodged = None
 word_delay = 0.05
 current_room = ""
+save_folder = Path("saves/")
+save_file = save_folder / "save_1.txt"
 
 
 def create_save():
@@ -26,8 +29,10 @@ def create_save():
     global player_hp
     global player_dmg
     global current_room
+    global save_file
+    global save_folder
     current_room = "start_game"
-    save_1 = open("saves\\save_1.txt", "w")
+    save_1 = open(save_file, "w")
 
     save_1.write("""room_1_right_wall_broken:\
 """ + str(room_1_right_wall_broken) + " \n")
@@ -50,7 +55,9 @@ def save_game():
     global player_hp
     global player_dmg
     global current_room
-    save_1 = open(f"saves\\save_1.txt", "w")
+    global save_file
+    global save_folder
+    save_1 = open(save_file, "w")
 
     save_1.write("""room_1_right_wall_broken:\
 """ + str(room_1_right_wall_broken) + " \n")
@@ -72,14 +79,16 @@ def load_game():
     global player_hp
     global player_dmg
     global current_room
+    global save_file
+    global save_folder
     try:
-        save_1 = open(f"saves\\save_1.txt", "r")
+        save_1 = open(save_file, "r")
     except FileNotFoundError:
         delayed_print_words("You don't have a save file.")
         play_game()
     has_a_save = True
     if has_a_save:
-        save_1 = open(f"saves\\save_1.txt", "r")
+        save_1 = open(save_file, "r")
         saved_variables = save_1.readlines()
         for i in saved_variables:
             if "room_1_right_wall_broken:" in i:
@@ -504,13 +513,15 @@ def first_combat_players_turn():
     global room_2_left_enemy_killed
     global player_move
     global current_room
+    global save_file
+    global save_folder
     current_room = "first_combat_players_turn"
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -570,12 +581,14 @@ def first_combat_enemies_turn():
     global room_2_left_enemy_hp
     global room_2_left_enemy_killed
     global player_move
+    global save_file
+    global save_folder
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -1127,13 +1140,15 @@ def boss_fight_players_turn_boss_right():
     global player_dmg
     global boss_hp
     global player_move
+    global save_file
+    global save_folder
     current_room = "boss_fight_players_turn_boss_right"
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -1198,13 +1213,15 @@ def boss_fight_players_turn_boss_left():
     global player_dmg
     global boss_hp
     global player_move
+    global save_file
+    global save_folder
     current_room = "boss_fight_players_turn_boss_left"
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -1270,12 +1287,14 @@ def boss_fight_boss_turn_player_left():
     global player_move
     global dodged
     global player_reaction_move
+    global save_file
+    global save_folder
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -1339,12 +1358,14 @@ def boss_fight_boss_turn_player_right():
     global player_move
     global dodged
     global player_reaction_move
+    global save_file
+    global save_folder
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -1408,13 +1429,15 @@ def boss_fight_player_reaction_boss_in_air():
     global boss_hp
     global player_move
     global player_reaction_move
+    global save_file
+    global save_folder
     current_room = "boss_fight_player_reaction_boss_in_air"
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -1487,13 +1510,15 @@ def boss_fight_player_reaction_boss_left():
     global player_dmg
     global boss_hp
     global player_move
+    global save_file
+    global save_folder
     current_room = "boss_fight_player_reaction_boss_left"
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
@@ -1555,13 +1580,15 @@ def boss_fight_player_reaction_boss_right():
     global player_dmg
     global boss_hp
     global player_move
+    global save_file
+    global save_folder
     current_room = "boss_fight_player_reaction_boss_right"
 
     if player_hp <= 0:
         delayed_print_words("""As you take that last hit you know th\
 is is the end of you.\nYour limbs begin to feel weak as the last bit\
  of your lifeforce fades away.\n\nYou have lost.""")
-        save_1 = open(f"saves\\save_1.txt", "w")
+        save_1 = open(save_file, "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
