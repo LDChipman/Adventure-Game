@@ -473,28 +473,28 @@ def room_2_right():
 def in_pit():
     global current_room
     current_room = "in_pit"
-    delayed_print_words("pit description")
+    delayed_print_words("""You are in a deep pit.""")
     if room_2_right_wall_broken == False: 
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
-            delayed_print_words("goes to room 2 right")
+            delayed_print_words("""You leap out of the pit.""")
             room_2_right()
         elif "right" in action and "jump" in action:
-            delayed_print_words("goes to room 2 far right")
+            delayed_print_words("""You leap out of the pit.""")
             room_2_far_right()
         if "left" in action:
-            delayed_print_words("walks into edge of pit goes to in pit")
+            delayed_print_words("""You walk to the left side of the pit.""")
             in_pit()
         elif "right" in action:
-            delayed_print_words("walks into edge of pit goes to in pit")
+            delayed_print_words("""You walk to the right side of the pit.""")
             in_pit()
         elif "help" in action:
             available_commands()
         elif "jump" in action:
-            delayed_print_words("jumps, goes to in pit")
+            delayed_print_words("""You leap high into the air, as you get to the apex of your jump you see out of the pit.""")
             in_pit()
         elif "attack" in action:
-            delayed_print_words("swings nail, goes to in pit")
+            delayed_print_words("""You swing your sword out in front of you.""")
             in_pit()
         else:
             exit_to_title()
