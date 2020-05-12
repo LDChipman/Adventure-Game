@@ -335,34 +335,32 @@ def room_2_far_left():
 def room_2_left():
     global current_room
     current_room = "room_2_left"
-    delayed_print_words("room 2 left description")
+    delayed_print_words("You look around and see a long cavern ahead.\nYou notice the ceiling in here is a little way above your head.")
     if room_2_left_enemy_killed == False:
         first_combat_players_turn()
-        delayed_print_words("goes to room 2 left")
-        room_2_left()
     else:
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "left" in action and "jump" in action:
-            delayed_print_words("jumps slightly to the left goes to room 2 left")
+            delayed_print_words("""You leap to the left as your head smashes into the ceiling.""")
             room_2_left()
         elif "right" in action and "jump" in action:
-            delayed_print_words("jumps slightly to right goes to room 2 left")
+            delayed_print_words("""You leap to the right as your head smashes into the ceiling.""")
             room_2_left()
         elif "help" in action:
             available_commands()
         elif "left" in action:
-            delayed_print_words("goes to room 2 far left")
+            delayed_print_words("""You walk to the left of the long cavern.""")
             room_2_far_left()
         elif "right" in action:
-            delayed_print_words("goes to room 2 right")
+            delayed_print_words("""You walk to the right of the long cavern.""")
             room_2_right()
         elif "jump" in action:
-            delayed_print_words("Jumps, goes to room 2 left")
+            delayed_print_words("""You leap into the air as your head smashes into the ceiling.""")
             room_2_left()
         elif "exit" in action:
             exit_to_title()
         else:
-            delayed_print_words("Swings nail, goes to room 2 left")
+            delayed_print_words("""You swing your sword out in front of you.""")
             room_2_left()
 
 def first_combat_players_turn():
