@@ -805,7 +805,7 @@ def room_4_boss_room():
         exit_to_title()
 
 def room_4_boss_fight():
-    delayed_print_words("boss fight starting description")
+    delayed_print_words("""Suddenly iron bars cover the door!\nFrom the ceiling a gargantuan creature appears falling down on the ground next to you!\nThe ground shakes on impact nearly knocking you off your feet.\nYou get your bearings and ready yourself to fight this massive foe!""")
     boss_fight_players_turn_boss_right()
 
 def boss_fight_players_turn_boss_right():
@@ -817,38 +817,38 @@ def boss_fight_players_turn_boss_right():
     current_room = "boss_fight_players_turn_boss_right"
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif boss_hp <= 0:
-        delayed_print_words("Describe bosses death and win, goes to title")
+        delayed_print_words("""As your attack connect you see the creature wail in pain!\nYellow-green Blood starts to pour rapidly from the wound.\nAs the creature falls over its helmet gets thrown off.\nYou see the life draining from its eyes.\nThe iron bars on the entrance suddenly retract.\nYou grab the creature’s helmet as a trophy and walk back to town.\nYou pick out one of the better-looking houses and live there happily for the rest of your days.\n\nYou Have Won!!""")
         title_screen() 
-    delayed_print_words("boss on right description")
+    delayed_print_words("""To the right, you see what looks to be a creature wearing a large suit of iron armor, wielding a giant maul.""")
     delayed_print_words(f"Your Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("goes to boss turn player on left")
+        delayed_print_words("""You leap to the left\nThe creature sees you leaping away and leaps into the air landing right next to you.""")
         boss_fight_boss_turn_player_left()
     elif "right" in action and "jump" in action:
-        delayed_print_words("takes 1 damage, goes to boss turn player on left")
+        delayed_print_words("""You leap to the right.\nYour face smashes against the creature’s armor and you feel a sharp pain run through your entire body.""")
         player_hp -= 1
         boss_fight_boss_turn_player_left()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes to boss turn player on left")
+        delayed_print_words("""You run to the left.\nThe creature sees you running and leaps into the air landing right next to you.""")
         boss_fight_boss_turn_player_left()
     elif "right" in action:
-        delayed_print_words("takes 1 damage, goes to boss turn player on left")
+        delayed_print_words("""You run to the right.\nRunning right into the creature and you feel a sharp pain run through your entire body.""")
         player_hp -= 1
         boss_fight_boss_turn_player_left()
     elif "jump" in action:
-        delayed_print_words("goes to boss turn player on left")
+        delayed_print_words("""You leap high into the air and land back where you leaped from.""")
         boss_fight_boss_turn_player_left()
     elif "attack" in action:
-        delayed_print_words("boss takes player damage goes to boss turn player on left")
+        delayed_print_words("""You swing your sword out at the beast cutting through the armor!\nYellow-green Blood starts to spill from the cut.""")
         boss_hp -= player_dmg
         boss_fight_boss_turn_player_left()
     else:
@@ -863,38 +863,38 @@ def boss_fight_players_turn_boss_left():
     current_room = "boss_fight_players_turn_boss_left"
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif boss_hp <= 0:
-        delayed_print_words("Describe bosses death and win, goes to title")
+        delayed_print_words("""As your attack connect you see the creature wail in pain!\nYellow-green Blood starts to pour rapidly from the wound.\nAs the creature falls over its helmet gets thrown off.\nYou see the life draining from its eyes.\nThe iron bars on the entrance suddenly retract.\nYou grab the creature’s helmet as a trophy and walk back to town.\nYou pick out one of the better-looking houses and live there happily for the rest of your days.\n\nYou Have Won!!""")
         title_screen()
-    delayed_print_words("boss on left description")
+    delayed_print_words("""To the left, you see what looks to be a creature wearing a large suit of iron armor, wielding a giant maul.""")
     delayed_print_words(f"Reads Player Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("player takes 1 damage, goes to boss turn player right")
+        delayed_print_words("""You leap to the left.\nYour face smashes against the creature’s armor and you feel a sharp pain run through your entire body.""")
         player_hp -= 1
         boss_fight_boss_turn_player_right()
     elif "right" in action and "jump" in action:
-        delayed_print_words("goes to boss turn player right")
+        delayed_print_words("""You leap to the right\nThe creature sees you leaping away and leaps into the air landing right next to you.""")
         boss_fight_boss_turn_player_right()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("player takes 1 damage, goes to boss turn player right")
+        delayed_print_words("""You run to the left.\nRunning right into the creature and you feel a sharp pain run through your entire body.""")
         player_hp -= 1
         boss_fight_boss_turn_player_right()
     elif "right" in action:
-        delayed_print_words("goes to boss turn player right")
+        delayed_print_words("""You run to the right.\nThe creature sees you running and leaps into the air landing right next to you.""")
         boss_fight_boss_turn_player_right()
     elif "jump" in action:
-        delayed_print_words("goes to boss turn player right")
+        delayed_print_words("""You leap high into the air and land back where you leaped from.""")
         boss_fight_boss_turn_player_right()
     elif "attack" in action:
-        delayed_print_words("boss takes player damage goes to boss turn player on right")
+        delayed_print_words("""You swing your sword out at the beast cutting through the armor!\nYellow-green Blood starts to spill from the cut.""")
         boss_hp -= player_dmg
         boss_fight_boss_turn_player_right()
     else:
@@ -909,18 +909,18 @@ def boss_fight_boss_turn_player_left():
     global player_reaction_move
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif boss_hp <= 0:
-        delayed_print_words("Describe bosses death and win, goes to title")
+        delayed_print_words("""As your attack connect you see the creature wail in pain!\nYellow-green Blood starts to pour rapidly from the wound.\nAs the creature falls over its helmet gets thrown off.\nYou see the life draining from its eyes.\nThe iron bars on the entrance suddenly retract.\nYou grab the creature’s helmet as a trophy and walk back to town.\nYou pick out one of the better-looking houses and live there happily for the rest of your days.\n\nYou Have Won!!""")
         title_screen()
 
     boss_move = random.choice(["Slam", "Jump Crush"])
     if boss_move == "Slam":
-        delayed_print_words("boss winds up slam")
+        delayed_print_words("""The creature raises its maul high above its head!""")
         dodged = boss_fight_player_reaction_boss_right()
         if dodged:
             boss_fight_players_turn_boss_right()
@@ -928,7 +928,7 @@ def boss_fight_boss_turn_player_left():
             player_hp -= 1
             boss_fight_players_turn_boss_right()
     else:
-        delayed_print_words("boss jumps above player")
+        delayed_print_words("""The creature crouches down, then suddenly leaps high into the air right above your head!""")
         dodged = boss_fight_player_reaction_boss_in_air()
         if dodged:
             if player_reaction_move == "left":
@@ -963,18 +963,18 @@ def boss_fight_boss_turn_player_right():
     global player_reaction_move
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif boss_hp <= 0:
-        delayed_print_words("Describe bosses death and win, goes to title")
+        delayed_print_words("""As your attack connect you see the creature wail in pain!\nYellow-green Blood starts to pour rapidly from the wound.\nAs the creature falls over its helmet gets thrown off.\nYou see the life draining from its eyes.\nThe iron bars on the entrance suddenly retract.\nYou grab the creature’s helmet as a trophy and walk back to town.\nYou pick out one of the better-looking houses and live there happily for the rest of your days.\n\nYou Have Won!!""")
         title_screen()
 
     boss_move = random.choice(["Slam", "Jump Crush"])
     if boss_move == "Slam":
-        delayed_print_words("boss winds up slam")
+        delayed_print_words("""The creature raises its maul high above its head!""")
         dodged = boss_fight_player_reaction_boss_left()
         if dodged:
             boss_fight_players_turn_boss_left()
@@ -982,7 +982,7 @@ def boss_fight_boss_turn_player_right():
             player_hp -= 1
             boss_fight_players_turn_boss_left()
     else:
-        delayed_print_words("boss jumps above player")
+        delayed_print_words("""The creature crouches down, then suddenly leaps high into the air right above your head!""")
         dodged = boss_fight_player_reaction_boss_in_air()
         if dodged:
             if player_reaction_move == "left":
@@ -1018,41 +1018,40 @@ def boss_fight_player_reaction_boss_in_air():
     current_room = "boss_fight_player_reaction_boss_in_air"
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif boss_hp <= 0:
-        delayed_print_words("Describe bosses death and win, goes to title")
+        delayed_print_words("""As your attack connect you see the creature wail in pain!\nYellow-green Blood starts to pour rapidly from the wound.\nAs the creature falls over its helmet gets thrown off.\nYou see the life draining from its eyes.\nThe iron bars on the entrance suddenly retract.\nYou grab the creature’s helmet as a trophy and walk back to town.\nYou pick out one of the better-looking houses and live there happily for the rest of your days.\n\nYou Have Won!!""")
         title_screen()
-    delayed_print_words("boss in air description")
     delayed_print_words(f"Your Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("jumps to the left")
+        delayed_print_words("""You leap to the left.\nYour face smashes against the bottom of the creature’s armor as it comes smashing down on top of you and you feel a sharp pain run through your entire body.""")
         player_reaction_move = "left"
         return False
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps to the right")
+        delayed_print_words("""You leap to the right.\nYour face smashes against the bottom of the creature’s armor as it comes smashing down on top of you and you feel a sharp pain run through your entire body.""")
         player_reaction_move = "right"
         return False
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes left")
+        delayed_print_words("""You run to the left.\nAs the creature’s gargantuan body smashes down where you were.\nThe ground trembles on impact.""")
         player_reaction_move = "left"
         return True
     elif "right" in action:
-        delayed_print_words("goes right")
+        delayed_print_words("""You run to the right.\nAs the creature’s gargantuan body smashes down where you were.\nThe ground trembles on impact.""")
         player_reaction_move = "right"
         return True
     elif "jump" in action:
-        delayed_print_words("jumps")
+        delayed_print_words("""You leap into the air.\nYour face smashes against the bottom of the creature’s armor as it comes smashing down on top of you and you feel a sharp pain run through your entire body.""")
         player_reaction_move = "under"
         return False
     elif "attack" in action:
-        delayed_print_words("attacks")
+        delayed_print_words("""You hold your sword out above your head.\nAs The creature comes smashing down, your sword pierces its armor\nYellow-green Blood starts to spill from the cut.\nYour body is squashed on impact and you feel a sharp pain run through your entire body.\nYou manage to pull yourself out from under the beast.""")
         boss_hp -= player_dmg
         player_reaction_move = "under"
         return False
@@ -1068,36 +1067,35 @@ def boss_fight_player_reaction_boss_left():
     current_room = "boss_fight_player_reaction_boss_left"
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif boss_hp <= 0:
-        delayed_print_words("Describe bosses death and win, goes to title")
+        delayed_print_words("""As your attack connect you see the creature wail in pain!\nYellow-green Blood starts to pour rapidly from the wound.\nAs the creature falls over its helmet gets thrown off.\nYou see the life draining from its eyes.\nThe iron bars on the entrance suddenly retract.\nYou grab the creature’s helmet as a trophy and walk back to town.\nYou pick out one of the better-looking houses and live there happily for the rest of your days.\n\nYou Have Won!!""")
         title_screen()
-    delayed_print_words("boss on left winding up slam attack description")
     delayed_print_words(f"Your Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("jumps to the left")
+        delayed_print_words("""You leap to the left.\nYour face smashes against the creature’s armor.\nThe creature’s maul comes smashing down on top of you and you feel a sharp pain run through your entire body.""")
         return False
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps to the right")
+        delayed_print_words("""You leap to the right.\nThe creatures maul comes smashing down onto the ground where you just were.""")
         return True
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes left")
+        delayed_print_words("""You run to the left.\nRunning right into the creature.\nAs the creature brings its maul down on top of you and you feel a sharp pain run through your entire body.""")
         return False
     elif "right" in action:
-        delayed_print_words("goes right")
+        delayed_print_words("""You run to the right.\nAs the creature brings its maul down right where you were.""")
         return True
     elif "jump" in action:
-        delayed_print_words("jumps")
+        delayed_print_words("""You leap into the air.\nAs the creature brings its maul down on top of you and you feel a sharp pain run through your entire body.""")
         return False
     elif "attack" in action:
-        delayed_print_words("attacks")
+        delayed_print_words("""You swing your sword out at the beast cutting through the armor!\nYellow-green Blood starts to spill from the cut.\nAs the creature brings its maul down on top of you and you feel a sharp pain run through your entire body.""")
         boss_hp -= player_dmg
         return False
     else:
@@ -1112,36 +1110,35 @@ def boss_fight_player_reaction_boss_right():
     current_room = "boss_fight_player_reaction_boss_right"
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif boss_hp <= 0:
-        delayed_print_words("Describe bosses death and win, goes to title")
+        delayed_print_words("""As your attack connect you see the creature wail in pain!\nYellow-green Blood starts to pour rapidly from the wound.\nAs the creature falls over its helmet gets thrown off.\nYou see the life draining from its eyes.\nThe iron bars on the entrance suddenly retract.\nYou grab the creature’s helmet as a trophy and walk back to town.\nYou pick out one of the better-looking houses and live there happily for the rest of your days.\n\nYou Have Won!!""")
         title_screen()
-    delayed_print_words("boss on right winding up slam attack description")
     delayed_print_words(f"Your Hp: {player_hp}")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("jumps to the left")
+        delayed_print_words("""You leap to the left.\nThe creatures maul comes smashing down onto the ground where you just were.""")
         return True
     elif "right" in action and "jump" in action:
-        delayed_print_words("jumps to the right")
+        delayed_print_words("""You leap to the right.\nYour face smashes against the creature’s armor.\nThe creature’s maul comes smashing down on top of you and you feel a sharp pain run through your entire body.""")
         return False
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes left")
+        delayed_print_words("""You run to the left.\nAs the creature brings its maul down right where you were.""")
         return True
     elif "right" in action:
-        delayed_print_words("goes right")
+        delayed_print_words("""You run to the right.\nRunning right into the creature.\nAs the creature brings its maul down on top of you and you feel a sharp pain run through your entire body.""")
         return False
     elif "jump" in action:
-        delayed_print_words("jumps")
+        delayed_print_words("""You leap into the air.\nAs the creature brings its maul down on top of you and you feel a sharp pain run through your entire body.""")
         return False
     elif "attack" in action:
-        delayed_print_words("attacks")
+        delayed_print_words("""You swing your sword out at the beast cutting through the armor!\nYellow-green Blood starts to spill from the cut.\nAs the creature brings its maul down on top of you and you feel a sharp pain run through your entire body.""")
         boss_hp -= player_dmg
         return False
     else:
