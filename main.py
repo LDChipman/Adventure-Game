@@ -403,11 +403,11 @@ def first_combat_players_turn():
         player_move = "right"
         first_combat_enemies_turn()
     elif "jump" in action:
-        delayed_print_words("You leap out of the way of the beasts attack.")
+        delayed_print_words("""You leap out of the way of the beasts attack.""")
         player_move = "jump"
         first_combat_enemies_turn()
     elif "attack" in action:
-        delayed_print_words("You swing your sword at the beast.")
+        delayed_print_words("""You swing your sword at the beast.""")
         room_2_left_enemy_hp -= player_dmg
         player_move = "attack"
         first_combat_enemies_turn()
@@ -422,50 +422,50 @@ def first_combat_enemies_turn():
     global player_move
 
     if player_hp <= 0:
-        delayed_print_words("Describe Death and los, goes to title")
+        delayed_print_words("""As you take that last hit you know this is the end of you.\nYour limbs begin to feel weak as the last bit of your lifeforce fades away.\n\nYou have lost.""")
         save_1 = open(f"saves\\save_1.txt", "w")
         save_1.write("Dead")
         save_1.close()
         title_screen()
     elif room_2_left_enemy_hp <= 0:
-        delayed_print_words("Describe enemy death, goes to room 2 left with enemy killed")
+        delayed_print_words("""As your sword connects with the beast, its thick carapace splits.\nBlack foul-smelling blood pours out of the gaping wound and the giant bug’s lifeless corpse falls to the ground.""")
         room_2_left_enemy_killed = True
         room_2_left()
     if player_move == "attack":
-        delayed_print_words("Describe enemy as dazed, goes to first combat players turn with both hp unchanged")
+        delayed_print_words("As your sword connects the beast screeches out in pain.")
         first_combat_players_turn()
     elif player_move == "jump":
-        delayed_print_words("Describe player jumping out of way, goes to first combat players turn with both hp unchanged")
+        delayed_print_words("""The beast charges right past you.""")
         first_combat_players_turn()
     else:
-        delayed_print_words("describe enemy damaging player, goes to first combat players turn with players hp -= 1 and enemy hp unchanged")
+        delayed_print_words("""The bug-like creature’s hulking body slams into you.\nYou feel a sharp pain run through your body.""")
         player_hp -= 1
         first_combat_players_turn()
 
 def room_2_right():
     global current_room
     current_room = "room_2_right"
-    delayed_print_words("room 2 right description with pit")
+    delayed_print_words("""You look around and see a long cavern ahead.\nYou notice the ceiling in this part of the cavern is a good ways above your head.\nA few steps away from you, you see a deep pit.""")
     action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
-        delayed_print_words("goes to room 2 left with enemy killed")
+        delayed_print_words("""You leap towards the left of the long cavern.""")
         room_2_left()
     elif "right" in action and "jump" in action:
-        delayed_print_words("goes to room 2 far right")
+        delayed_print_words("""You leap over the pit.""")
         room_2_far_right()
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("goes to room 2 left")
+        delayed_print_words("""You walk to the left of the long cavern.""")
         room_2_left()
     elif "right" in action:
-        delayed_print_words("goes to in pit")
+        delayed_print_words("""You walk forward and fall into the pit.""")
         in_pit()
     elif "jump" in action:
-        delayed_print_words("Jumps, goes to room 2 right")
+        delayed_print_words("""You leap high into the air and land right where you jumped from.""")
         room_2_right()
     elif "attack" in action:
-        delayed_print_words("Attacks, goes to room 2 right")
+        delayed_print_words("""You swing your sword out in front of you.""")
         room_2_right()
     else:
         exit_to_title()
