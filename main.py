@@ -87,15 +87,15 @@ def play_game():
 def available_commands():
     global current_room
     global npc_house_npc_killed
-    if current_room == "npc_house" and "npc_house_npc_killed" == False:
+    if current_room == "npc_house" and npc_house_npc_killed == False:
         delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Talk\n Exit to Title\n Help")
-        current_room()
+        eval(current_room)()
     elif current_room == "room_3_town":
         delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Enter House\n Exit to Title\n Help")
-        current_room()
+        eval(current_room)()
     else:
         delayed_print_words("Available Commands:\n Jump to the Left\n Jump to the Right\n Move Left\n Move Right\n Jump Up\n Attack\n Exit to Title\n Help")
-        current_room()
+        eval(current_room)()
 
 def exit_to_title():
     global current_room
@@ -206,9 +206,10 @@ def room_1_left():
     elif "help" in action:
         available_commands()
     elif "left" in action:
-        delayed_print_words("Walks into wall goes to room 1 left")
-    elif "right" in action:
         delayed_print_words("""You walk into the wall.""")
+        room_1_left()
+    elif "right" in action:
+        delayed_print_words("""You walk to the middle of the cavern.""")
         room_1()
     elif "jump" in action:
         delayed_print_words("""You leap high into the air and land right where you jumped from.""")
@@ -511,7 +512,7 @@ def room_2_far_right():
             delayed_print_words("""The cracks in the wall widen faster and faster!\nSuddenly pieces of the wall start falling down.\nYou jump out of the way narrowly dodging the falling debris.\nLight starts pouring in!\nAs the dust settles you see the source of the light, the moon shining beautifully.""")
             room_2_right_wall_broken = True
             room_2_far_right()
-        delayed_print_words("""You are in a large cavern\nUnlike the other caverns you’ve been in this one very well lit.\nLight in this cavern is coming from a large wall on the right\nThe wall has large cracks running down it.""")
+        delayed_print_words("""You are in a large cavern.\nUnlike the other caverns you’ve been in this one very well lit.\nLight in this cavern is coming from a large wall on the right.\nThe wall has large cracks running down it.""")
         action = valid_input("What would you like to do?", ["jump"and"left", "jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
         if "jump" in action and "left" in action:
             delayed_print_words("""You leap over the pit to the left.""")
@@ -567,7 +568,7 @@ def room_3_cliff():
     global current_room
     current_room = "room_3_cliff"
 
-    delayed_print_words("""You stand at the edge of a cliffside.\nTo the right the earth has been broken away.\n Looking over the edge of the cliff you see a long way down the ground can be seen.\nOff in the distance a small town can be seen.""")
+    delayed_print_words("""You stand at the edge of a cliffside.\nTo the right the earth has been broken away.\nLooking over the edge of the cliff you see a long way down the ground can be seen.\nOff in the distance a small town can be seen.""")
     action = valid_input("What would you like to do?", ["jump"and"left","jump"and"right", "help", "left", "right", "jump", "attack", "exit"])
     if "left" in action and "jump" in action:
         delayed_print_words("""You leap into the cavern.""")
@@ -682,8 +683,8 @@ def npc_house():
             delayed_print_words("""You swing your sword out at the old man, decapitating him.\nHis lifeless body falls to the ground.""")
             npc_house_npc_killed = True
             npc_house()
-        elif "talk" in action or "speak" in action and player_dmg == 1:
-            delayed_print_words("""You go up to the old man, as he sees you, he says\n\"Why hello there fella, haven’t seen many people around here in a while.\nThat monster has come by and killed all but me.\nI see you’ve got yourself a sword there\nYou wouldn’t happen to be going to slay that terrible beast, would ya?\nHmm the silent type ay.\nWell if you are, he stays at the edge of town, his lair lies behind a large iron gateway...\n Or so i have been told, i haven’t left my house in years.\nBack when i was younger i was a quite the fierce warrior, but now im just an old man.\nHere take this sword with ya, its much sharper than your own.\nShould help you make short work of the beast!\"""")
+        elif "talk" in action and player_dmg == 1 or "speak" in action and player_dmg == 1:
+            delayed_print_words("""You go up to the old man, as he sees you, he says\n\"Why hello there fella, haven’t seen many people around here in a while.\nThat monster has come by and killed all but me.\nI see you’ve got yourself a sword there\nYou wouldn’t happen to be going to slay that terrible beast, would ya?\nHmm the silent type ay.\nWell if you are, he stays at the edge of town, his lair lies behind a large iron gateway...\nOr so i have been told, i haven’t left my house in years.\nBack when i was younger i was a quite the fierce warrior, but now im just an old man.\nHere take this sword with ya, its much sharper than your own.\nShould help you make short work of the beast!\"""")
             player_dmg = 1.5
             npc_house()
         elif "talk" in action or "speak" in action:
@@ -1145,7 +1146,7 @@ def boss_fight_player_reaction_boss_right():
         exit_to_title()
 
 def start_game():
-    delayed_print_words("""You are falling through a seemingly endless void.\nFinally the ground comes in to view.\nAs you smash into the ground with incredible force.\nOddly though you feel no pain on impact.\nAs your senses come to you fully you notice a bit of extra weight on your left side.\nLooking down you see an old slightly worn sword in a sheathe at your waist.""")
+    delayed_print_words("""You are falling through a seemingly endless void.\nFinally the ground comes in to view.\nAs you smash into the ground with incredible force.\nOddly though you feel no pain on impact.\nAs your senses come to you fully, you notice a bit of extra weight on your left side.\nLooking down you see an old slightly worn sword in a sheathe at your waist.""")
     room_1()
 
 title_screen()
