@@ -1,0 +1,6 @@
+room_1_right_wall_broken:False 
+room_2_right_wall_broken:False 
+npc_house_npc_killed:False 
+player_hp:5 
+player_dmg:1 
+current_room:room_1 
