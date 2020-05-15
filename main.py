@@ -21,6 +21,19 @@ save_folder = Path("saves/")
 save_file = save_folder / "save_1.txt"
 
 
+def valid_action(input_text, option_dict={}):
+
+    global word_delay
+    while True:
+        sleep(word_delay)
+        response = input(delayed_print_words(input_text)).lower()
+        reply = option_dict.get(response)
+        if reply:
+            return reply
+        delayed_print_words("""That isn't a response I know what to do\
+ with. \nPlease choose a valid option and try again.""")
+
+
 def create_save():
 
     global room_1_right_wall_broken
@@ -234,32 +247,32 @@ def room_1():
     delayed_print_words("""You find yourself in the middle of a dece\
 ntly sized, but dimly-lit cavern.\nOn each side of this cavern a wal\
 l seems to extend upwards forever.""")
-    action = valid_input("What would you like to do?", ["jump"and"""le\
-ft""", "jump"and"right", "help", "left", "right", "jump", "attack", """e\
-xit"""])
-    if "left" in action and "jump" in action:
+    action = valid_action("What would you like to do?\nAvailable Com\
+mands:\n 1 = Jump to the Left\n 2 = Jump to the Right\n 3 = Move Lef\
+t\n 4 = Move Right\n 5 = Jump Up\n 6 = Attack\n 7 = Exit to Title\
+", {"1": "left jump", "2": "right jump", "3": "left", "4": "right", "5\
+": "jump", "6": "attack", "7": "exit"})
+    if action == "left jump":
         delayed_print_words("""You leap towards the left side of the\
  cavern.""")
         room_1_left()
-    elif "right" in action and "jump" in action:
+    elif action == "right jump":
         delayed_print_words("""You leap towards the right of the cav\
 ern.""")
         room_1_right()
-    elif "help" in action:
-        available_commands()
-    elif "left" in action:
+    elif action == "left":
         delayed_print_words("""You walk to the left side of the cave\
 rn.""")
         room_1_left()
-    elif "right" in action:
+    elif action == "right":
         delayed_print_words("""You walk to the right side of the cav\
 ern.""")
         room_1_right()
-    elif "jump" in action:
+    elif action == "jump":
         delayed_print_words("""You leap high into the air and land r\
 ight where you jumped from.""")
         room_1()
-    elif "exit" in action:
+    elif action == "exit":
         exit_to_title()
     else:
         delayed_print_words("""You swing your sword out in front of yo\
@@ -273,31 +286,31 @@ def room_1_left():
     current_room = "room_1_left"
     delayed_print_words("""You look at the wall.\nIt seems to be of \
 sturdy construction.""")
-    action = valid_input("What would you like to do?", ["jump"and"""le\
-ft""", "jump"and"right", "help", "left", "right", "jump", "attack", """e\
-xit"""])
-    if "left" in action and "jump" in action:
+    action = valid_action("What would you like to do?\nAvailable Com\
+mands:\n 1 = Jump to the Left\n 2 = Jump to the Right\n 3 = Move Lef\
+t\n 4 = Move Right\n 5 = Jump Up\n 6 = Attack\n 7 = Exit to Title\
+", {"1": "left jump", "2": "right jump", "3": "left", "4": "right", "5\
+": "jump", "6": "attack", "7": "exit"})
+    if action == "left jump":
         delayed_print_words("""You leap to the left as your face sma\
 shes against the wall.""")
         room_1_left()
-    elif "right" in action and "jump" in action:
+    elif action == "right jump":
         delayed_print_words("""You leap towards the middle of the ca\
 vern.""")
         room_1()
-    elif "help" in action:
-        available_commands()
-    elif "left" in action:
+    elif action == "left":
         delayed_print_words("""You walk into the wall.""")
         room_1_left()
-    elif "right" in action:
+    elif action == "right":
         delayed_print_words("""You walk to the middle of the cavern.\
 """)
         room_1()
-    elif "jump" in action:
+    elif action == "jump":
         delayed_print_words("""You leap high into the air and land r\
 ight where you jumped from.""")
         room_1_left()
-    elif "exit" in action:
+    elif action == "exit":
         exit_to_title()
     else:
         delayed_print_words("""You swing your sword at the wall.\nA \
